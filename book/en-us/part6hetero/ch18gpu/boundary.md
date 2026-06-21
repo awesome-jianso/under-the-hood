@@ -203,7 +203,7 @@ exist, and the build-time and runtime costs go to zero together.
 [19.3](../ch19graphics/software.md)'s software rendering is a living example of this rung: it
 calls no graphics driver and computes every pixel in Go, in place. The Go ecosystem also has
 pure-Go tokenizers, and even pure-Go inference implementations for small models. The price is
-just as honest: you take on the engineering of the rewrite, and you lose the years of
+just as real: you take on the engineering of the rewrite, and you lose the years of
 SIMD-and-hardware-hugging optimization behind the C library, so a pure-Go implementation
 often computes slower. It suits the cases where "the C library's value is not peak
 performance but functionality."

@@ -145,7 +145,7 @@ func (m *Mutex) lockSlow() {
 not exceed the cap (4 by default), and there must be no other goroutine waiting to run in the local
 run queue. In other words, we spin only when "the lock is very likely to be acquired soon, and
 spinning will not starve others"; once the lock is in starvation mode, or the spin count is exhausted,
-we honestly hang ourselves on the semaphore `sema` and sleep, to be woken when the lock holder
+we simply hang ourselves on the semaphore `sema` and sleep, to be woken when the lock holder
 unlocks. This "spin on short waits, sleep on long waits" hybrid strategy is not unique to Go.
 pthread's adaptive mutex (`PTHREAD_MUTEX_ADAPTIVE_NP`), Java's biased / lightweight locks,
 parking_lot, and others all take the same approach, differing only in the thresholds for how long to
@@ -181,7 +181,7 @@ still has not succeeded, it switches the mutex into starvation mode the moment i
 then on the rules invert: on unlock, no one is allowed to barge, and instead the lock's ownership is
 **handed off straight to the head waiter in FIFO order** (on unlock the `mutexLocked` bit is not even
 set, and the waiter who receives the handoff sets it after waking); a newly arrived goroutine, even if
-it sees the lock "looking empty," does not try to acquire it and does not spin, but honestly lines up
+it sees the lock "looking empty," does not try to acquire it and does not spin, but simply lines up
 at the tail. Once the queue drains, or the head waiter this time waited less than 1ms, the mutex
 switches back to normal mode.
 

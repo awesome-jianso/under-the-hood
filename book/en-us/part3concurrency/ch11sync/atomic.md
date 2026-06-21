@@ -74,7 +74,7 @@ This loop hides the cost of lock-free programming. Unlike a lock, a failed CAS d
 goroutine but retries immediately. When contention is mild this is a good deal, sparing the locking,
 the possible sleep and wakeup; but once contention is fierce, multiple goroutines repeatedly read
 values that overwrote one another and repeatedly fail their CAS, the CPU is spent entirely on spinning,
-and throughput ends up worse than an honest old lock. There is another hazard called **livelock**:
+and throughput ends up worse than a plain old lock. There is another hazard called **livelock**:
 everyone is retrying, the system as a whole looks like it is making progress, yet an individual
 goroutine may fail to commit for a long time. So atomic operations suit single-word, low-contention,
 or read-mostly scenarios: counters, flags, configuration pointers, and the like; forcibly tearing a

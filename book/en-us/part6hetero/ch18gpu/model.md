@@ -145,7 +145,7 @@ width given at runtime by `.Len()`, with no need to assume it when writing the c
 emulation where there is no corresponding hardware, guaranteeing portability. It also
 provides mask types to express "act only on the lanes that meet a condition," and a fused
 multiply-add like `MulAdd`, which is exactly the staple of the hottest inner loops of matrix
-multiply, convolution, and geometric transforms. It must be honestly labeled: as of this
+multiply, convolution, and geometric transforms. It must be labeled plainly: as of this
 writing, `simd` is still an **experimental feature of Go 1.27**, its API may change, and it
 needs `GOEXPERIMENT` turned on explicitly. But the direction it points is clear: take a
 class of parallelism once obtainable only through assembly or the GPU, and bring it back

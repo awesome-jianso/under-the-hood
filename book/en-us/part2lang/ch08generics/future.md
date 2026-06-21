@@ -190,7 +190,7 @@ code calls a method on a type parameter, the call first goes through the diction
 concrete type's method table (itab), then jumps indirectly through the itab. This layer of indirection
 **defeats inlining and devirtualization**. The compiler can neither see through the call target nor
 inline it. The result is counterintuitive: in some scenarios the generic version is not only no faster
-than a hand-written concrete version, it is even slower than an honest `interface`-based version,
+than a hand-written concrete version, it is even slower than a plain `interface`-based version,
 because it carries the dictionary's indirection while gaining none of the inlining benefit that
 monomorphization was supposed to bring. For the mechanism's details, see the design document "Generics
 implementation: GC Shape Stenciling" in the Go proposal repository.

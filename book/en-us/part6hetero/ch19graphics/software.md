@@ -77,7 +77,7 @@ func blendRow(dst, src, alpha []float32) {
 }
 ```
 
-Two points consistent with 18.4.3 are worth restating in the graphics context. First, **vector-length agnostic**: `lanes` is given at runtime by the hardware, so the same blending code advances 16 float32 at a time on an AVX512 server and 4 at a time on ARM NEON, with no need to write a separate version per width. Second, **use hardware if present, emulate in pure Go otherwise**, which guarantees this rendering code compiles and runs on any target, exactly the portability software rendering cares about most. To be honest once more: `simd` is still an experimental feature in 1.27, and its API may change.
+Two points consistent with 18.4.3 are worth restating in the graphics context. First, **vector-length agnostic**: `lanes` is given at runtime by the hardware, so the same blending code advances 16 float32 at a time on an AVX512 server and 4 at a time on ARM NEON, with no need to write a separate version per width. Second, **use hardware if present, emulate in pure Go otherwise**, which guarantees this rendering code compiles and runs on any target, exactly the portability software rendering cares about most. To restate the caveat once more: `simd` is still an experimental feature in 1.27, and its API may change.
 
 ## 19.3.4 Composing the Two Layers, and the Divide with the GPU
 
