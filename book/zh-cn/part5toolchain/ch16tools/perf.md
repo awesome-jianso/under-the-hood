@@ -52,8 +52,8 @@ func BenchmarkFib(b *testing.B) {
 会把基准函数连同它的 setup/cleanup 重复跑好几遍。
 
 把视野放到别家，「微基准必须对抗死代码消除」是个**普遍问题**，各语言的解法同构而手法不同。
-Java 的 JMH 提供 `Blackhole.consume()` 让读者显式「消费」掉结果，骗过 JIT；Rust 的 Criterion
-提供 `black_box()` 做同样的事。Go 的独特之处在于把这件事下沉到了**编译器**：读者不必手动 sink，
+Java 的 JMH 提供 `Blackhole.consume()` 让使用者显式「消费」掉结果，骗过 JIT；Rust 的 Criterion
+提供 `black_box()` 做同样的事。Go 的独特之处在于把这件事下沉到了**编译器**：无需手动 sink，
 `b.Loop` 的语法变换替读者保活。代价是它绑死了写法（必须是 `for b.Loop()`），这是「少写样板」与
 「语法受限」之间的一处取舍。
 
