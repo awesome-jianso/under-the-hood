@@ -119,7 +119,7 @@ func sendDirect(t *_type, sg *sudog, src unsafe.Pointer) {
 注意这里只是把接收方标记为可运行并放回运行队列（[9.4](../ch09sched/schedule.md)），并不立即
 切换过去。
 
-## 10.3.3 阻塞路径：挂进队列，等人替你完成
+## 10.3.3 阻塞路径：挂进队列，等人代为完成
 
 若既无等待的接收方、缓存也满（无缓存 channel 则是「永远满」，见下节 `full`），发送方只能
 阻塞。它把自己包装成一个 `sudog` 挂进 `sendq`，然后 `gopark` 让出 CPU：

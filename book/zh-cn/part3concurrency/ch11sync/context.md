@@ -246,13 +246,13 @@ Go statement considered harmful》里把这点讲透了：裸 `go`（以及别�
 关系传播；Java 的 `StructuredTaskScope`（经多轮 JEP 预览，至 JDK 25 仍为预览特性）让
 作用域关闭时自动取消未完成的子任务，把 nursery 直接做进了标准库；.NET 的
 `CancellationToken` 与 Go 的 `context` 最为神似，同样是显式传一个取消令牌、由被调方协作检查，
-区别在 .NET 用 `OperationCanceledException` 异常来传递取消，Go 则只给一个要你主动去 `select`
+区别在 .NET 用 `OperationCanceledException` 异常来传递取消，Go 则只给一个需主动去 `select`
 的 channel。
 
 Go 在语言层没有引进 nursery，而是用 `golang.org/x/sync/errgroup` 在库一层逼近它：
 `errgroup.WithContext` 返回一个组与一个派生 `context`，组内任一 goroutine 返回错误，便取消
 这个 `context`，从而通知其余 goroutine 停下，`g.Wait()` 则阻塞到全组结束。这给了「同进同出、
-一损俱损」的近似，但终究是约定而非强制，编译器不会拦住你在 `errgroup` 之外再裸 `go` 一个
+一损俱损」的近似，但终究是约定而非强制，编译器不会拦住读者在 `errgroup` 之外再裸 `go` 一个
 逃逸出作用域的 goroutine。这正是 Go 当前的取舍：把结构化并发留在库与规范层，而非铸进语言。
 
 ## 11.8.6 值传递的争议与显式传参之辩
