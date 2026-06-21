@@ -44,7 +44,7 @@ Java 世界有 JUnit 4 / JUnit 5 / TestNG 之分，注解与 runner 各不相同
 
 ## 16.4.2 刻意极简的 testing 包
 
-`testing` 包没有断言库。它只给你几个朴素的报告原语：`t.Error` / `t.Errorf` 记录一处失败但
+`testing` 包没有断言库。它只给出几个朴素的报告原语：`t.Error` / `t.Errorf` 记录一处失败但
 继续往下跑，`t.Fatal` / `t.Fatalf` 记录失败并立刻中止当前测试（内部以 `runtime.Goexit`
 实现，故只能在测试 goroutine 里调用）。没有 `assertEqual`、没有 `assertThat(x).isGreaterThan(y)`
 那一整套链式断言。
@@ -174,7 +174,7 @@ func BenchmarkIndex(b *testing.B) {
 
 这套设计当然有它放弃的东西。极简的 `testing` 包把断言、mock、参数化这些便利留给了第三方
 （`testify`、`gomock`）或样板代码，换来的是标准库的稳定与生态的统一。约定取代配置牺牲了
-灵活性（你无法重定义测试的发现规则），换来的是零适配成本。这正是 Go 反复做出的同一种取舍：
+灵活性（无法重定义测试的发现规则），换来的是零适配成本。这正是 Go 反复做出的同一种取舍：
 用一套人人都懂、工具都认的朴素约定，换取整个生态在协作上的低摩擦。性能与便利从不白来，
 Go 在这里选择把成本压在「少数需要花哨断言的人多写几行」，以让「所有人都能零成本地跑测试」。
 
