@@ -8,7 +8,7 @@ title: "10.7 工程实践与跨语言对照"
 前面几节把 channel 的内部结构、收发路径与 select 的实现讲透了。读懂了机制，
 随之而来的是一个更难、也更工程的问题：什么时候该用 channel，什么时候不该用。
 Go 的宣传语「Do not communicate by sharing memory; instead, share memory by communicating」
-容易被读成「凡共享状态皆应走 channel」，但这并非作者的本意。这一节把这句话还原成一条
+读者很容易把它读成「凡共享状态皆应走 channel」，但这并非作者的本意。这一节把这句话还原成一条
 可操作的判别规则，对照同步原语章（[第 11 章](../ch11sync/readme.md)）里更轻的工具，
 再把 Go 的选择放进 CSP 家族的谱系里看，理解它在设计空间中的具体坐标。
 

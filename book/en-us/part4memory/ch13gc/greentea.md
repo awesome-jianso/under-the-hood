@@ -39,7 +39,7 @@ This "chasing pointers all over memory" access pattern is close to the worst cas
 
 The consequence is that mark throughput **struggles to scale linearly with core count**: adding cores merely lets more cores
 wait on memory together. This is the single largest remaining cost of the marking phase after go1.5 pushed the pause into
-sub-millisecond ([13.4](./mark.md)), and it is the bone Green Tea sets out to chew. Note that the dimension it targets
+sub-millisecond ([13.4](./mark.md)), and it is the bone Green Tea sets out to chew. The dimension it targets
 differs from the abandoned generational and ROC schemes ([13.8](./generational.md), [13.9](./roc.md)): those two roads try
 to scan *fewer* objects by leaning on objects' **temporal** structure (age, request lifetime), at the cost of a long-running
 write barrier; Green Tea tries to scan the *same* number of objects *faster* by leaning on objects' **spatial** structure

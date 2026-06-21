@@ -8,9 +8,9 @@ title: "10.7 Engineering Practice and Cross-Language Comparison"
 The previous sections took the internal structure of a channel, the send and receive paths,
 and the implementation of select all the way down. Once we understand the mechanism, a harder
 and more engineering-flavored question follows: when should we use a channel, and when should we
-not. Go's slogan, "Do not communicate by sharing memory; instead, share memory by communicating,"
-is easily read as "any shared state should go through a channel," but that is not what its author
-meant. This section reduces that slogan to an actionable rule of thumb, sets it against the lighter
+not. Readers easily take Go's slogan, "Do not communicate by sharing memory; instead, share memory by
+communicating," to mean "any shared state should go through a channel," but that is not what its
+author meant. This section reduces that slogan to an actionable rule of thumb, sets it against the lighter
 tools in the chapter on synchronization primitives ([Chapter 11](../ch11sync/readme.md)),
 and then places Go's choice within the lineage of the CSP family, so we can understand its specific
 coordinates in the design space.

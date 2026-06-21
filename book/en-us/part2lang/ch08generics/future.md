@@ -240,7 +240,7 @@ observe next, extend later. Its cost is "the capability you want has to wait" (p
 sum types still have not arrived). What it buys is that every extension stands on a need already
 validated, rather than betting on speculation.
 
-It is for this reason that the absence list in 8.4.2 should not be read as "a to-do list not yet
+It is for this reason that readers should not read the absence list in 8.4.2 as "a to-do list not yet
 finished." Some of those items may never be added. Go's restraint toward language complexity is itself
 part of the design. The future of generics is most likely not some version with an explosion of
 features, but a continuation of this slow, small-step walk: between abstraction and simplicity,
