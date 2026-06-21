@@ -127,7 +127,7 @@ v.Method2(args)
 像 Java/C# 那样显式 `implements`。这是**结构化类型**（structural typing）对**名义类型**（nominal
 typing）的选择。
 
-它的收益是解耦。你可以为别人的类型、甚至标准库的类型，定义出它们恰好满足的接口，而不必
+它的收益是解耦。读者可以为别人的类型、甚至标准库的类型，定义出它们恰好满足的接口，而不必
 改动那些类型一行代码。`io.Reader`/`io.Writer` 这种「小接口遍地适配」的生态，正源于此：
 `bytes.Buffer`、`os.File`、`net.Conn` 谁都没声明自己实现 `io.Reader`，却都能被任何接受
 `io.Reader` 的函数接住。接口与实现在两端各自演化，中间靠方法集自然对齐。

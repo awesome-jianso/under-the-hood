@@ -40,7 +40,7 @@ for i, c := range []byte(s) { // 编译器：仅遍历，不持久化，无需�
 要在自己代码里手动零拷贝转换，Go 1.20 给了正式工具：`unsafe.String(*byte, len)` 把一段字节当
 字符串看，`unsafe.StringData(string) *byte` 取字符串底层指针，`unsafe.Slice` / `unsafe.SliceData`
 是切片侧的对应物。它们取代了过去靠 `reflect.StringHeader` / `reflect.SliceHeader` 手工拼头部
-的脆弱写法（那种写法在有 GC 移动与字段对齐变化时并不可靠）。代价是你要自己担保**转换之后那段
+的脆弱写法（那种写法在有 GC 移动与字段对齐变化时并不可靠）。代价是要自己担保**转换之后那段
 字节不再被修改**，否则就把不可变契约捅破了：
 
 ```go
