@@ -131,7 +131,7 @@ Go 代码，去做后面那些用 Go 写的初始化。`rt0_go` 接着依次调�
 诊断分支后，主干次序如下：
 
 ```go
-// runtime/proc.go（裁剪后的速写，仅保留承重的调用次序）
+// runtime/proc.go（裁剪后的速写，仅保留关键的调用次序）
 func schedinit() {
 	gp := getg()
 

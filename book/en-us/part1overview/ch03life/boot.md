@@ -154,7 +154,7 @@ here. There are hard ordering dependencies between them, and the order cannot be
 lock initialization and diagnostic branches trimmed away, the main sequence runs as follows:
 
 ```go
-// runtime/proc.go (a trimmed sketch, keeping only the load-bearing call order)
+// runtime/proc.go (a trimmed sketch, keeping only the call order that matters)
 func schedinit() {
 	gp := getg()
 
