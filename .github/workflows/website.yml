@@ -30,6 +30,15 @@ jobs:
         DOMAIN: ${{ secrets.SERVER_DOMAIN }}
       run: |
         cd website && make
+        # Guard against markdown that Goldmark turns into <del>/<sub>/<sup>.
+        # A single `~` around a numeric range (`2~3%`) is the known case (#103);
+        # the book writes `2 至 3%` instead. Checking the rendered HTML rather
+        # than the source also catches delimiters that pair across a soft line
+        # break, and stops a broken page before it is uploaded.
+        if grep -rnoE --include='*.html' '<(del|sub|sup)>' public/; then
+          echo "::error::unintended <del>/<sub>/<sup> in rendered output"
+          exit 1
+        fi
         mkdir ~/.ssh
         echo "$KEY" | tr -d '\r' > ~/.ssh/id_ed25519
         chmod 400 ~/.ssh/id_ed25519
